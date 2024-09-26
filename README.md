@@ -11,23 +11,28 @@ Backpropagation is an algorithm used for computing gradients of the loss functio
 For a single linear layer, we calculate the gradient of the loss  $L$  with respect to the parameters  $W$ ,  $b$ , and the input  $x$ . Let’s denote the output of the linear layer as  $y = Wx + b$ , and the loss as  $L$ .
 
 **1. Gradient of the Loss with respect to Output  y:**
-The gradient of the loss with respect to the output of the current layer is passed down from the next layer in the backward pass:
+The gradient of the loss with respect to the output of the current layer is passed down from the next layer in the backward pass:<br>
+
 $$ \frac{\partial L}{\partial y} $$
 
 **2. Gradient with respect to Weights  W :**
-Using the chain rule, the gradient of the loss with respect to the weights is computed as:
-$$ \frac{\partial L}{\partial W} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial W} = \delta \cdot x^T $$
-Where  $\delta = \frac{\partial L}{\partial y} $ represents the gradient propagated from the next layer.
+Using the chain rule, the gradient of the loss with respect to the weights is computed as:<br>
 
-**3. The gradient with respect to bias is calculated as:**
+$$ \frac{\partial L}{\partial W} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial W} = \delta \cdot x^T $$
+
+Where  $\delta=\frac{\partial L}{\partial y}$ represents the gradient propagated from the next layer.
+
+**3. The gradient with respect to bias is calculated as:**<br>
+
 $$ \frac{\partial L}{\partial b} = \frac{\partial L}{\partial y} = \delta $$
 
-**4. Finally, the gradient of the loss with respect to the input to this layer is:**
+**4. Finally, the gradient of the loss with respect to the input to this layer is:** <br>
+
 $$ \frac{\partial L}{\partial x} = W^T \cdot \delta $$
 
 **Activation Function’s Gradient**
 
-If the activation function  \sigma  is applied after the linear transformation, we need to propagate gradients through it. For an activation function  \sigma(y) , the gradient is:
+If the activation function  $\sigma$  is applied after the linear transformation, we need to propagate gradients through it. For an activation function  $\sigma(y)$ , the gradient is: <br>
 
 $$ \frac{\partial L}{\partial z} = \frac{\partial L}{\partial y} \cdot \sigma’(y) $$
 
@@ -39,8 +44,10 @@ For each layer during backpropagation, we perform the following steps:
 
 1.	Calculate the gradient of the loss with respect to the output (from the next layer).
 2.	Compute the gradients with respect to weights, biases, and inputs using the chain rule.
-3.	Update the parameters using gradient descent:
-$$ W \leftarrow W - \eta \cdot \frac{\partial L}{\partial W} $$
+3.	Update the parameters using gradient descent: <br>
+
+$$ W \leftarrow W - \eta \cdot \frac{\partial L}{\partial W} $$ <br>
+
 $$ b \leftarrow b - \eta \cdot \frac{\partial L}{\partial b} $$
 
 where  $\eta$  is the learning rate.
